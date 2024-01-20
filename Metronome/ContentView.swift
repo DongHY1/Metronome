@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var isMetronomeActive = false
-    @State private var metronomeSpeed = 120.0
+    @State private var metronomeSpeed:Int = 120
     var body: some View {
         NavigationStack{
             List {
@@ -17,11 +17,11 @@ struct ContentView: View {
                     Toggle("Open Metronome",isOn: $isMetronomeActive)
                         .toggleStyle(SwitchToggleStyle())
                         .padding()
-                    Stepper("Speed: \(metronomeSpeed) BPM", value: $metronomeSpeed, in: 40...240)
+                    Stepper("\(metronomeSpeed) BPM", value: $metronomeSpeed, in: 40...240)
                         .padding()
                 }
             }
-            .navigationTitle("Settings")
+            .navigationTitle("Metronome")
         }
         
     }
