@@ -9,16 +9,21 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var isMetronomeActive = false
+    @State private var metronomeSpeed = 120.0
     var body: some View {
-        VStack {
-            Toggle("Open Metronome",isOn: $isMetronomeActive)
-                .toggleStyle(SwitchToggleStyle())
-            
-            if(isMetronomeActive){
-                Text("Metronome")
+        NavigationStack{
+            List {
+                Section{
+                    Toggle("Open Metronome",isOn: $isMetronomeActive)
+                        .toggleStyle(SwitchToggleStyle())
+                        .padding()
+                    Stepper("Speed: \(metronomeSpeed) BPM", value: $metronomeSpeed, in: 40...240)
+                        .padding()
+                }
             }
+            .navigationTitle("Settings")
         }
-        .padding()
+        
     }
 }
 
