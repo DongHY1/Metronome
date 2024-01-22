@@ -6,6 +6,16 @@
 //
 
 import SwiftUI
+import AVFoundation
+import AudioToolbox
+
+func playSound(){
+    #if os(iOS)
+    AudioServicesPlaySystemSound(1104)
+    #elseif os(macOS)
+    AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_UserPreferredAlert))
+    #endif
+}
 
 struct ContentView: View {
     @State private var isMetronomeActive = false
@@ -40,6 +50,7 @@ struct ContentView: View {
             .onReceive(Timer.publish(every: 60.0 / Double(metronomeSpeed), on: .main, in: .common).autoconnect()) { _ in
                 if isMetronomeActive {
                     activeBeat = (activeBeat + 1) % beats
+                    playSound()
                 }
             }
         }
