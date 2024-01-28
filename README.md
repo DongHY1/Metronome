@@ -2,5 +2,5 @@
 
 - [ ] iOS
 - [ ] iPadOS
-- [ ] macOS
+- [x] macOS
 - [ ] watchOS
